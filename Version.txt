@@ -1,5 +1,4 @@
 v4.0
-
 DEV 1
-DEV2
-TESTING
+Feature X
+Feature Y
