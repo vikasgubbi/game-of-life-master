@@ -241,6 +241,44 @@
 
                     <!-- PMD -->
                     <plugin>
+                        <groupId>org.codehaus.cargo</groupId>
+                        <artifactId>cargo-maven2-plugin</artifactId>
+                        <version>1.4.18</version>
+                        <configuration>
+                            <container>
+                                <containerId>glassfish4x</containerId>
+                                <type>remote</type>
+                            </container>
+                            <configuration>
+                                <type>runtime</type>
+                                <properties>
+                                    <cargo.hostname>ci.bramvaneijk.nl</cargo.hostname>
+                                    <cargo.remote.username>admin</cargo.remote.username>
+                                    <cargo.remote.password>pizza</cargo.remote.password>
+                                    <cargo.remote.port>80</cargo.remote.port>
+                                    <cargo.glassfish.domain.name>/myapp</cargo.glassfish.domain.name>
+                                </properties>
+                            </configuration>
+                            <deployables>
+                                <deployable>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>${project.artifactId}</artifactId>
+                                    <type>war</type>
+                                    <properties>
+                                        <context>/myapp</context>
+                                    </properties>
+                                </deployable>
+                            </deployables>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.glassfish.deployment</groupId>
+                                <artifactId>deployment-client</artifactId>
+                                <version>3.2-b06</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                    <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-pmd-plugin</artifactId>
                         <version>3.2</version>
